@@ -1,0 +1,23 @@
+body {
+  background-color: red;
+}
+.ye-header .title {
+  margin: 10px 0 10px 20px ;
+}
+.ye-header .title2 {
+  margin: 5px 0 10px 40px ;
+}
+.ye-img img {
+  width: 80px;
+  height: 80px;
+}
+.ye-size {
+  cursor: pointer;
+}
+.ant-input.ye-time {
+  width: 70px;
+}
+.ye-input {
+  margin-bottom: 20px;
+  width: 70px;
+}

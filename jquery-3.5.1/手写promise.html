@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写promise</title>
+</head>
+<body>
+    <script>
+       class Promise {
+           //promise 要偿还一个和回调方法 executor，作为Promise 的参数
+           //executor接收resolve 和 reject 作为 executor 的参数
+           //promise 有三种状态，pending、fulfilled、rejected
+            constructor(executor) {
+                // 定义一个状态，初始是 pending
+                this.state = 'pending'
+                this.value = undefined
+                this.reason = undefined
+                
+                const resolve = (value) => {
+                if (this.state === 'pending') {
+                    // 成功，状态由 pending 变为 fulfilled
+                    this.state = 'fulfilled'
+                    // 接收 成功啦~
+                    this.value = value
+                }
+                }
+                const reject = (reason) => {
+                if (this.state === 'pending') {
+                    // 失败，状态由 pending 变为 rejected
+                    this.state = 'rejected'
+                    // 接收 失败啦~
+                    this.reason = reason
+                }
+                }
+                executor(resolve, reject)
+            }
+            
+            //实现一个 then 方法，接收两个参数分别为 onFulfilled 和 onRejected，当 pending => fulfilled 后执行 onFulFilled，当 pending => rejected 后执行 onRejected
+            then(onFulfilled, onRejected) {
+                // 成功
+                if (this.state === 'fulfilled') {
+                // 接收成功传来的数据
+                onFulfilled(this.value)
+                }
+                // 失败
+                if (this.state === 'rejected') {
+                // 接收失败传来的数据
+                onRejected(this.reason)
+                }
+            }
+            }
+            module.exports = Promise
+    </script>
+</body>
+</html>
